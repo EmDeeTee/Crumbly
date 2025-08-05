@@ -122,6 +122,7 @@ class Crumbly {
             </script>
             <?php
         });
+        // QNA: Is this safe/good?
         wp_head();
     }
 
@@ -132,6 +133,7 @@ class Crumbly {
      * @since 0.1.0
      */
     public static function GetStyle(): string {
+        // QNA: Feels kinda scuffed. Should it be a separate file or something else?
         return '
             <style>
                 .crumbly {
