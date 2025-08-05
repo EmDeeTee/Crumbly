@@ -6,6 +6,7 @@
 namespace Crumbly;
 
 // TODO: Automatic CSS injection using a hook/action? see - admin_head
+// TODO: Add an ability to define a default home node for the path
 
 use Crumbly\Path\CrumblyPath;
 
