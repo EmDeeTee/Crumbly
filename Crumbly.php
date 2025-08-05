@@ -136,6 +136,7 @@ class Crumbly {
             <style>
                 .crumbly {
                     display: flex;
+                    flex-wrap: wrap;
                     gap: 8px;
                     color: black;
                     font-size: 16px;
