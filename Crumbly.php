@@ -77,7 +77,7 @@ class Crumbly {
             return '';
         }
 
-        $html = '<nav aria-label="Breadcrumbs"><ol class="crumbly">';
+        $html = '<nav class="crumbly-nav" aria-label="Breadcrumbs"><ol class="crumbly">';
 
         foreach ($nodes as $index => $node) {
             $title = htmlspecialchars($node['title'], ENT_QUOTES, 'UTF-8');
