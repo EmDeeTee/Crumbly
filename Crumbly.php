@@ -7,6 +7,23 @@ namespace Crumbly;
 
 // TODO: Automatic CSS injection using a hook/action? see - admin_head
 // TODO: Add an ability to define a default home node for the path
+// TODO: Integrate a helper function. SOmething like:
+//function CrumblyMakeCrumbs(array $nodes, bool $embedMeta): string {
+//    $pb = new CrumblyPathBuilder();
+//
+//    $pb->AddRawNode(
+//        'Home',
+//        get_permalink(get_the_ID()),
+//    );
+//
+//    foreach ($nodes as $node) {
+//        $pb->AddRawNode($node['title'], $node['url']);
+//    }
+//
+//    $c = new Crumbly($pb->Build());
+//    $c->EmbedMeta();
+//    return $c->GenerateMarkup();
+//}
 
 use Crumbly\Path\CrumblyPath;
 
