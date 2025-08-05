@@ -1,0 +1,16 @@
+{
+    "name": "webplace/crumbly",
+    "description": "Minimalistic breadcrumbs with Google's BreadcrumbList compliance.",
+    "autoload": {
+        "psr-4": {
+            "Crumbly\\": "",
+            "Crumbly\\Path\\": "Path/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Webplace.pl"
+        }
+    ],
+    "require": {}
+}
