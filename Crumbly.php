@@ -25,6 +25,8 @@ namespace Crumbly;
 //    return $c->GenerateMarkup();
 //}
 
+// QNA: What should the structure be? Right not it's all in root
+
 use Crumbly\Path\CrumblyPath;
 
 class Crumbly {
