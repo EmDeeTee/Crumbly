@@ -49,6 +49,7 @@ class Crumbly {
 
     // TODO: The constructor is getting quite long...
     //       Maybe something like Crumbly->UseConfig() is in order?
+    //       P.S. Shouldn't the $separator also be migrated to a config? Since not it's a possibility
     public function __construct(CrumblyPath $path, string $separator = '>', CrumblyConfig $config = null) {
         $this->path = $path;
         $this->separator = $separator;
