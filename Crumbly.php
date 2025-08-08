@@ -45,16 +45,16 @@ class Crumbly {
     /**
      * @since 0.1.1
      */
-    private CrumblyConfig $config;
+    private CrumblyConfig $activeConfig;
 
     // TODO: The constructor is getting quite long...
     //       Maybe something like Crumbly->UseConfig() is in order?
     public function __construct(CrumblyPath $path, string $separator = '>', CrumblyConfig $config = null) {
         $this->path = $path;
         $this->separator = $separator;
-        $this->config = $config ?? new CrumblyConfig();
+        $this->activeConfig = $config ?? new CrumblyConfig();
 
-        if ($config->EnsureTrailingSlash) {
+        if ($this->activeConfig->EnsureTrailingSlash) {
             foreach ($this->path as $node) {
                 $node->EnsureUrlTrailingSlash();
             }
