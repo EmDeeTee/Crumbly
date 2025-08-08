@@ -5,6 +5,7 @@ namespace Crumbly\Path;
 use http\Url;
 
 /**
+ * TODO: Add a ref thinggy, for clarity
  * Represents a single node in the breadcrumb path.
  *
  * @since 0.1.0
