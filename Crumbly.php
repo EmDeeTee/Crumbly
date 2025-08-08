@@ -1,7 +1,4 @@
 <?php
-/**
- * @since 0.1.0
- */
 
 namespace Crumbly;
 
@@ -29,28 +26,44 @@ namespace Crumbly;
 
 use Crumbly\Path\CrumblyPath;
 
+/**
+ * @since 0.1.0
+ */
 class Crumbly {
+    // QNA: Are all these @readonly needed?
+
     /**
+     * @since 0.1.0
      * @readonly
-     * @var CrumblyPath
      */
     private CrumblyPath $path;
     /**
+     * @since 0.1.0
      * @readonly
-     * @var string
      */
     private string $separator;
+    /**
+     * @since 0.1.1
+     */
+    private CrumblyConfig $config;
 
-    public function __construct(CrumblyPath $path, string $separator = '>') {
+    // TODO: The constructor is getting quite long...
+    //       Maybe something like Crumbly->UseConfig() is in order?
+    public function __construct(CrumblyPath $path, string $separator = '>', CrumblyConfig $config = null) {
         $this->path = $path;
         $this->separator = $separator;
+        $this->config = $config ?? new CrumblyConfig();
+
+        if ($config->EnsureTrailingSlash) {
+            foreach ($this->path as $node) {
+                $node->EnsureUrlTrailingSlash();
+            }
+        }
     }
 
     /**
-     * TODO: Add a ref to the thing, because this isn't clear enough?
-     * Gets the path of the breadcrumbs.
+     * Gets the path of the breadcrumbs in the current {@see CrumblyPath}.
      *
-     * @return CrumblyPath
      * @since 0.1.0
      */
     public function GetPath(): CrumblyPath {
@@ -60,7 +73,6 @@ class Crumbly {
     /**
      * Gets the separator used in the breadcrumbs.
      *
-     * @return string
      * @since 0.1.0
      */
     public function GetSeparator(): string {
@@ -71,7 +83,6 @@ class Crumbly {
      * Generates the HTML markup for the breadcrumbs.
      * Root class is `crumbly`, and each item has the class `crumbly-item`.
      *
-     * @return string
      * @since 0.1.0
      */
     public function GenerateMarkup(): string {
@@ -101,7 +112,6 @@ class Crumbly {
     /**
      * Generates and embeds the Google BreadcrumbList JSON into a meta tag in <head> of the page.
      *
-     * @return void
      * @since 0.1.0
      */
     public function EmbedMeta(): void {
@@ -126,13 +136,13 @@ class Crumbly {
             <?php
         });
         // QNA: Is this safe/good?
+        // QNA: How do I unit test with this? Can I not call the function by wrapping it with an 'if'?
         wp_head();
     }
 
     /**
      * Gets the static CSS styles for the breadcrumbs.
      *
-     * @return string
      * @since 0.1.0
      */
     public static function GetStyle(): string {
@@ -162,7 +172,7 @@ class Crumbly {
         return array_map(function($node, $index) {
             return [
                 'title' => htmlspecialchars($node->GetTitle(), ENT_QUOTES, 'UTF-8'),
-                'url'   => htmlspecialchars($node->GetUrl(), ENT_QUOTES, 'UTF-8'),
+                'url' => htmlspecialchars($node->GetUrl(), ENT_QUOTES, 'UTF-8'),
                 'index' => $index
             ];
         }, $nodes, array_keys($nodes));

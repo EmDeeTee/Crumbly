@@ -2,13 +2,18 @@
 
 namespace Crumbly\Path;
 
+use ArrayIterator;
+use Traversable;
+use IteratorAggregate;
+
 /**
  * Represents a breadcrumb path made of {@see CrumblyPathNode} nodes.
  *
+ * @implements IteratorAggregate<int,CrumblyPathNode>
  * @see CrumblyPathNode
  * @since 0.1.0
  */
-class CrumblyPath {
+class CrumblyPath implements IteratorAggregate {
     /**
      * @readonly
      * @var CrumblyPathNode[]
@@ -19,10 +24,9 @@ class CrumblyPath {
      * Adds a node to the path.
      *
      * @param CrumblyPathNode $node
-     * @return $this
      * @since 0.1.0
      */
-    public function AddNode(CrumblyPathNode $node): self {
+    public function AddNode(CrumblyPathNode $node): CrumblyPath {
         $this->path[] = $node;
         return $this;
     }
@@ -35,5 +39,16 @@ class CrumblyPath {
      */
     public function GetNodes(): array {
         return $this->path;
+    }
+
+    // QNA: Isn't this pointless if we have GetNodes()?
+    // If it's only for ergonomics... Also, quite difficult to type properly
+    /**
+     * Implemented for {@see IteratorAggregate}
+     *
+     * @since 0.1.1
+     */
+    public function getIterator(): Traversable {
+        return new ArrayIterator($this->path);
     }
 }
