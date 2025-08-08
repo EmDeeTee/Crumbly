@@ -47,6 +47,7 @@ class Crumbly {
     }
 
     /**
+     * TODO: Add a ref to the thing, because this isn't clear enough?
      * Gets the path of the breadcrumbs.
      *
      * @return CrumblyPath
