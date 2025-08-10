@@ -45,7 +45,7 @@ class Crumbly {
     /**
      * @since 0.1.1
      */
-    private CrumblyOptions $activeConfig;
+    private CrumblyOptions $options;
 
     // TODO: The constructor is getting quite long...
     //       Maybe something like Crumbly->UseConfig() is in order? Instead of passing it in the constructor
@@ -56,10 +56,10 @@ class Crumbly {
     public function __construct(CrumblyPath $path, string $separator = '>', CrumblyOptions $config = null) {
         $this->path = $path;
         $this->separator = $separator;
-        $this->activeConfig = $config ?? new CrumblyOptions();
+        $this->options = $config ?? new CrumblyOptions();
 
         // TODO: This is probably overcomplicated. Just call CrumblyPath->GetNodes() instead of implementing Traversable
-        if ($this->activeConfig->EnsureTrailingSlash) {
+        if ($this->options->EnsureTrailingSlash) {
             foreach ($this->path as $node) {
                 $node->EnsureUrlTrailingSlash();
             }
