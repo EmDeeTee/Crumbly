@@ -48,7 +48,10 @@ class Crumbly {
     private CrumblyOptions $activeConfig;
 
     // TODO: The constructor is getting quite long...
-    //       Maybe something like Crumbly->UseConfig() is in order?
+    //       Maybe something like Crumbly->UseConfig() is in order? Instead of passing it in the constructor
+    //       Also, Maybe add a method like Crumbly->ApplyConfig()? Because I don't know how I feel about
+    //       Having the trail-ensuring logic right out in the open like that
+    //
     //       P.S. Shouldn't the $separator also be migrated to a config? Since not it's a possibility
     public function __construct(CrumblyPath $path, string $separator = '>', CrumblyOptions $config = null) {
         $this->path = $path;
