@@ -58,6 +58,7 @@ class Crumbly {
         $this->separator = $separator;
         $this->activeConfig = $config ?? new CrumblyOptions();
 
+        // TODO: This is probably overcomplicated. Just call CrumblyPath->GetNodes() instead of implementing Traversable
         if ($this->activeConfig->EnsureTrailingSlash) {
             foreach ($this->path as $node) {
                 $node->EnsureUrlTrailingSlash();
