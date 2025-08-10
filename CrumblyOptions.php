@@ -8,7 +8,7 @@ use Crumbly\Path\CrumblyPathNode;
 /**
  * @since 0.1.1
  */
-class CrumblyConfig {
+class CrumblyOptions {
     /**
      * This option will ensure that all {@see CrumblyPathNode} nodes will have a trailing slash
      *

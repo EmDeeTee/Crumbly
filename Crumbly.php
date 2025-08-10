@@ -45,15 +45,15 @@ class Crumbly {
     /**
      * @since 0.1.1
      */
-    private CrumblyConfig $activeConfig;
+    private CrumblyOptions $activeConfig;
 
     // TODO: The constructor is getting quite long...
     //       Maybe something like Crumbly->UseConfig() is in order?
     //       P.S. Shouldn't the $separator also be migrated to a config? Since not it's a possibility
-    public function __construct(CrumblyPath $path, string $separator = '>', CrumblyConfig $config = null) {
+    public function __construct(CrumblyPath $path, string $separator = '>', CrumblyOptions $config = null) {
         $this->path = $path;
         $this->separator = $separator;
-        $this->activeConfig = $config ?? new CrumblyConfig();
+        $this->activeConfig = $config ?? new CrumblyOptions();
 
         if ($this->activeConfig->EnsureTrailingSlash) {
             foreach ($this->path as $node) {
