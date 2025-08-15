@@ -3,16 +3,20 @@
 namespace Crumbly\Path;
 
 /**
- * TODO: Add a ref thinggy, for clarity
- * Represents a single node in the breadcrumb path.
+ * Represents a single node in the breadcrumb {@see CrumblyPath} path.
  *
+ * @see CrumblyPath
  * @since 0.1.0
  */
 class CrumblyPathNode {
     private string $title;
     private string $url;
 
-    public function __construct($title, $url) {
+    /**
+     * @param string $title Display name of the node. Will be visible in the markup and Google's BreadcrumbList JSON
+     * @param string $url The URL to the page this node represents. Will be used in the markup as a href and in Google's BreadcrumbList JSON
+     */
+    public function __construct(string $title, string $url) {
         $this->title = $title;
         $this->url = $url;
     }

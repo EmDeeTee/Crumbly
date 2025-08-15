@@ -5,12 +5,14 @@ namespace Crumbly\Path;
 /**
  * Represents a breadcrumb path made of {@see CrumblyPathNode} nodes.
  *
+ * Constructed using {@see CrumblyPathBuilder}
+ *
  * @see CrumblyPathNode
+ * @see CrumblyPathBuilder
  * @since 0.1.0
  */
 class CrumblyPath {
     /**
-     * @readonly
      * @var CrumblyPathNode[]
      */
     private array $path = [];

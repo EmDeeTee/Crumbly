@@ -2,19 +2,18 @@
 
 namespace Crumbly;
 
-use Crumbly\Path\CrumblyPathNode;
-
-// QNA: Is this a good idea? A config object with all members being public
 /**
+ * Configuration object for {@see Crumbly}
+ *
  * @since 0.1.1
  */
 class CrumblyOptions {
     /**
-     * This option will ensure that all {@see CrumblyPathNode} nodes will have a trailing slash
+     * The string displayed between breadcrumb items in the HTML markup
      *
-     * @since 0.1.1
+     * @since 0.2.0
      */
-    public bool $EnsureTrailingSlash = false;
+    public string $separator = ">";
 
     function __construct() { }
 }

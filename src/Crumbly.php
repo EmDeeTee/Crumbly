@@ -2,7 +2,6 @@
 
 namespace Crumbly;
 
-// TODO: Automatic CSS injection using a hook/action? see - admin_head
 // TODO: Add an ability to define a default home node for the path
 // TODO: Integrate a helper function. SOmething like:
 //function CrumblyMakeCrumbs(array $nodes, bool $embedMeta): string {
@@ -22,41 +21,25 @@ namespace Crumbly;
 //    return $c->GenerateMarkup();
 //}
 
-// QNA: What should the structure be? Right not it's all in root
-
 use Crumbly\Path\CrumblyPath;
 
 /**
+ * A facade that allows you to generate the Google's BreadcrumbList JSON and markup of the breadcrumb menu from a {@see CrumblyPath} path
+ *
  * @since 0.1.0
  */
 class Crumbly {
-    // QNA: Are all these @readonly needed?
-
-    /**
-     * @since 0.1.0
-     * @readonly
-     */
     private CrumblyPath $path;
-    /**
-     * @since 0.1.0
-     * @readonly
-     */
-    private string $separator;
-    /**
-     * @since 0.1.1
-     */
+
     private CrumblyOptions $options;
 
-    // TODO: The constructor is getting quite long...
-    //       Maybe something like Crumbly->UseConfig() is in order? Instead of passing it in the constructor
-    //       Also, Maybe add a method like Crumbly->ApplyConfig()? Because I don't know how I feel about
-    //       Having the trail-ensuring logic right out in the open like that
-    //
-    //       P.S. Shouldn't the $separator also be migrated to a config? Since not it's a possibility
-    public function __construct(CrumblyPath $path, string $separator = '>', CrumblyOptions $config = null) {
+    /**
+     * @param CrumblyPath $path The path from which to generate the markup and Google's BreadcrumbList JSON
+     * @param CrumblyOptions|null $options The config that alters the generators. A default config will be created if null is passed
+     */
+    public function __construct(CrumblyPath $path, CrumblyOptions $options = null) {
         $this->path = $path;
-        $this->separator = $separator;
-        $this->options = $config ?? new CrumblyOptions();
+        $this->options = $options ?? new CrumblyOptions();
     }
 
     /**
@@ -71,10 +54,12 @@ class Crumbly {
     /**
      * Gets the separator used in the breadcrumbs.
      *
+     * The separator is changed by the {@see CrumblyOptions} options
+     *
      * @since 0.1.0
      */
     public function GetSeparator(): string {
-        return $this->separator;
+        return $this->options->separator;
     }
 
     /**
@@ -99,13 +84,16 @@ class Crumbly {
                 $html .= "<li class='crumbly-item active' aria-current='page'>{$title}</li>";
             } else {
                 $html .= "<li class='crumbly-item'><a href='{$url}'>{$title}</a></li>";
-                $html .= "<li class='crumbly-separator'>{$this->separator}</li>";
+                $html .= "<li class='crumbly-separator'>{$this->options->separator}</li>";
             }
         }
         $html .= '</ol></nav>';
 
         return $html;
     }
+
+    //TODO: Split these two methods into separate classes
+    //TODO: Make EmbedMeta just return the JSON-LD with the breadcrumbs
 
     /**
      * Generates and embeds the Google BreadcrumbList JSON into a meta tag in <head> of the page.
@@ -137,6 +125,8 @@ class Crumbly {
         // QNA: How do I unit test with this? Can I not call the function by wrapping it with an 'if'?
         wp_head();
     }
+
+    //TODO: Nuke this method and make it into a file
 
     /**
      * Gets the static CSS styles for the breadcrumbs.
