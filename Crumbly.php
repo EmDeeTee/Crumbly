@@ -59,6 +59,7 @@ class Crumbly {
         $this->options = $config ?? new CrumblyOptions();
 
         // TODO: This is probably overcomplicated. Just call CrumblyPath->GetNodes() instead of implementing Traversable
+        // FIXME: Move this to CrumblyPathBuilder
         if ($this->options->EnsureTrailingSlash) {
             foreach ($this->path as $node) {
                 $node->EnsureUrlTrailingSlash();
