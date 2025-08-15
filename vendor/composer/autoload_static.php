@@ -9,19 +9,14 @@ class ComposerStaticInit4b1bfd7476c70564ac470617efbfd2d6
     public static $prefixLengthsPsr4 = array (
         'C' => 
         array (
-            'Crumbly\\Path\\' => 13,
             'Crumbly\\' => 8,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Crumbly\\Path\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Path',
-        ),
         'Crumbly\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/',
+            0 => __DIR__ . '/../..' . '/src',
         ),
     );
 

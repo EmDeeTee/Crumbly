@@ -6,6 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Crumbly\\Path\\' => array($baseDir . '/Path'),
-    'Crumbly\\' => array($baseDir . '/'),
+    'Crumbly\\' => array($baseDir . '/src'),
 );
