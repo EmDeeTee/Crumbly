@@ -7,16 +7,15 @@ namespace Crumbly\Path;
  */
 class CrumblyPathBuilder {
     /**
-     * @readonly
      * @var CrumblyPathNode[]
      */
     private array $path = [];
 
+    private bool $ensureTrailingSlash = false;
+
     /**
      * Adds a node to the path.
      *
-     * @param CrumblyPathNode $node
-     * @return $this
      * @since 0.1.0
      */
     public function AddNode(CrumblyPathNode $node): self {
@@ -27,14 +26,24 @@ class CrumblyPathBuilder {
     /**
      * Adds a node to the path with a title and URL. (Internal constructor call)
      *
-     * @param string $title
-     * @param string $path
-     * @return $this
      * @since 0.1.0
      */
     public function AddRawNode(string $title, string $path): self {
         $this->path[] = new CrumblyPathNode($title, $path);
         return $this;
+    }
+
+    /**
+     * If the node URL doesn't contain a trailing slash, adds it
+     *
+     * If the URL already has a slash, does nothing
+     *
+     * For example, https://website/product would become https://website/product/
+     *
+     * @since 0.2.0
+     */
+    public function UseEnsureTrailingSlash(bool $val) {
+        $this->ensureTrailingSlash = $val;
     }
 
     /**
@@ -44,12 +53,18 @@ class CrumblyPathBuilder {
      * @since 0.1.0
      */
     public function Build(): CrumblyPath {
-        $crumblyPath = new CrumblyPath();
+        $finalNodes = [];
 
         foreach ($this->path as $node) {
-            $crumblyPath->AddNode($node);
+            $url = $node->GetUrl();
+
+            if ($this->ensureTrailingSlash && substr($url, -1) !== '/') {
+                $finalNodes[] = new CrumblyPathNode($node->GetTitle(), $url . '/');
+            } else {
+                $finalNodes[] = $node;
+            }
         }
 
-        return $crumblyPath;
+        return new CrumblyPath($finalNodes);
     }
 }

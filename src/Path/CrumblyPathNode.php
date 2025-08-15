@@ -34,29 +34,4 @@ class CrumblyPathNode {
     public function GetUrl(): string {
         return $this->url;
     }
-
-    /**
-     * If the node URL doesn't contain a trailing slash, adds it
-     *
-     * If the URL already has a slash, does nothing
-     *
-     * @since 0.1.1
-     */
-    public function EnsureUrlTrailingSlash() : void {
-        if (substr($this->url, -1) !== '/') {
-            $this->url .= '/';
-        }
-    }
-
-    // TODO: Is this even needed?
-    //       If it is, add a proper return type
-    /**
-     * @since 0.1.0
-     */
-    public function ToArray() {
-        return [
-            'title' => $this->title,
-            'url' => $this->url->toString(),
-        ];
-    }
 }
