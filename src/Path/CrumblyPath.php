@@ -34,4 +34,22 @@ class CrumblyPath {
     public function GetNodes(): array {
         return $this->path;
     }
+
+    /**
+     * Gets the breadcrumb list as an array for use easier use.
+     *
+     * @return array<int, array{title: string, url: string, index: int}>
+     * @since 0.2.0
+     */
+    public function GetBreadcrumbList(): array {
+        $nodes = $this->GetNodes();
+
+        return array_map(function($node, $index) {
+            return [
+                'title' => htmlspecialchars($node->GetTitle(), ENT_QUOTES, 'UTF-8'),
+                'url' => htmlspecialchars($node->GetUrl(), ENT_QUOTES, 'UTF-8'),
+                'index' => $index
+            ];
+        }, $nodes, array_keys($nodes));
+    }
 }

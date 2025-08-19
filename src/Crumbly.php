@@ -63,6 +63,15 @@ class Crumbly {
     }
 
     /**
+     * Gets the active options of the Crumbly instance
+     *
+     * @since 0.2.0
+     */
+    public function GetOptions(): CrumblyOptions {
+        return $this->options;
+    }
+
+    /**
      * Generates the HTML markup for the breadcrumbs.
      * Root class is `crumbly`, and each item has the class `crumbly-item`.
      *
@@ -146,23 +155,5 @@ class Crumbly {
                 }
             </style>
         ';
-    }
-
-    /**
-     * Gets the breadcrumb list as an array for use easier use.
-     *
-     * @return array<int, array{title: string, url: string, index: int}>
-     * @since 0.1.0
-     */
-    private function GetBreadcrumbList(): array {
-        $nodes = $this->path->GetNodes();
-
-        return array_map(function($node, $index) {
-            return [
-                'title' => htmlspecialchars($node->GetTitle(), ENT_QUOTES, 'UTF-8'),
-                'url' => htmlspecialchars($node->GetUrl(), ENT_QUOTES, 'UTF-8'),
-                'index' => $index
-            ];
-        }, $nodes, array_keys($nodes));
     }
 }
