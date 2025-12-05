@@ -20,6 +20,7 @@ class CrumblyPath {
 
     /**
      * @param CrumblyPathNode[] $nodes
+     * @internal
      * @since 0.2.0
      */
     public function __construct(array $nodes) {
@@ -52,9 +53,5 @@ class CrumblyPath {
                 'index' => $index
             ];
         }, $nodes, array_keys($nodes));
-    }
-
-    public function AddNode(CrumblyPathNode $node): void {
-        $this->path[] = $node;
     }
 }

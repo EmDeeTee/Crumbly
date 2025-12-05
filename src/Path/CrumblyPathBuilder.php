@@ -9,7 +9,6 @@ use JetBrains\PhpStorm\Deprecated;
 /**
  * @since 0.1.0
  */
-#[Deprecated]
 class CrumblyPathBuilder {
     /**
      * @var CrumblyPathNode[]
