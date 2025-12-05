@@ -6,11 +6,9 @@ namespace Crumbly;
 use Crumbly\Path\CrumblyPath;
 
 /**
- * A facade that allows you to generate the Google's BreadcrumbList JSON and markup of the breadcrumb menu from a {@see CrumblyPath} path
- *
  * @since 0.1.0
  */
-class Crumbly {
+final class Crumbly {
     private CrumblyPath $path;
     private CrumblyOptions $options;
 

@@ -10,7 +10,7 @@ use Crumbly\Crumbly;
  *
  * @since 1.0.0
  */
-class MetaGenerator implements GeneratorContract {
+final class MetaGenerator implements GeneratorContract {
     public function Generate(Crumbly $crumbly): string {
         $breadcrumbItems = array_map(function($entry) {
             return [

@@ -10,7 +10,7 @@ use Crumbly\Crumbly;
  *
  * @since 1.0.0
  */
-class MarkupGenerator implements GeneratorContract {
+final class MarkupGenerator implements GeneratorContract {
     public function Generate(Crumbly $crumbly): string {
         $nodes =  $crumbly->GetPath()->GetBreadcrumbList();
 

@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Crumbly\Path;
 
-use JetBrains\PhpStorm\Deprecated;
-
 // NOTE: Should this be static?
 /**
  * @since 0.1.0
