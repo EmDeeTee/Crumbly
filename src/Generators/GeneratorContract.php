@@ -4,12 +4,11 @@ declare(strict_types=1);
 namespace Crumbly\Generators;
 
 use Crumbly\Crumbly;
-use Crumbly\Path\CrumblyPath;
 
 /**
  * Base for Crumbly generators
  *
- * @since 0.2.0
+ * @since 1.0.0
  */
 interface GeneratorContract {
     public function Generate(Crumbly $crumbly): string;

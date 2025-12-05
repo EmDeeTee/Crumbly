@@ -4,19 +4,13 @@ declare(strict_types=1);
 namespace Crumbly\Generators;
 
 use Crumbly\Crumbly;
-use Crumbly\Path\CrumblyPath;
 
 /**
- * Class containing the HTML generator
+ * Generates HTML markup for breadcrumbs.
  *
- * @since 0.2.0
+ * @since 1.0.0
  */
 class MarkupGenerator implements GeneratorContract {
-    /**
-     * Generates and returns the HTML markup for the breadcrumb list
-     *
-     * @since 0.2.0
-     */
     public function Generate(Crumbly $crumbly): string {
         $nodes =  $crumbly->GetPath()->GetBreadcrumbList();
 

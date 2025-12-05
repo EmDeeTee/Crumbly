@@ -16,7 +16,7 @@ class CrumblyPath {
     /**
      * @var CrumblyPathNode[]
      */
-    private array $path = [];
+    private array $path;
 
     /**
      * @param CrumblyPathNode[] $nodes
@@ -48,8 +48,8 @@ class CrumblyPath {
 
         return array_map(function($node, $index) {
             return [
-                'title' => htmlspecialchars($node->GetTitle(), ENT_QUOTES, 'UTF-8'),
-                'url' => htmlspecialchars($node->GetUrl(), ENT_QUOTES, 'UTF-8'),
+                'title' => $node->GetTitle(),
+                'url' => $node->GetUrl(),
                 'index' => $index
             ];
         }, $nodes, array_keys($nodes));

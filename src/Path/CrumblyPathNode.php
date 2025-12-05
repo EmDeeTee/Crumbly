@@ -18,7 +18,7 @@ class CrumblyPathNode {
      * @param string $url The URL to the page this node represents. Will be used in the markup as a href and in Google's BreadcrumbList JSON
      */
     public function __construct(string $title, string $url, bool $ensureTrailingSlash = false) {
-        $this->title = $title;
+        $this->title = html_entity_decode($title, ENT_QUOTES | ENT_HTML5, "UTF-8");
         $this->url = $url;
 
         if ($ensureTrailingSlash && !str_ends_with($this->url, '/')) {
