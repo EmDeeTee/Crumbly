@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Crumbly\Generators;
 
@@ -10,15 +11,14 @@ use Crumbly\Path\CrumblyPath;
  *
  * @since 0.2.0
  */
-class MarkupGenerator implements GeneratorContract
-{
+class MarkupGenerator implements GeneratorContract {
     /**
      * Generates and returns the HTML markup for the breadcrumb list
      *
      * @since 0.2.0
      */
-    public function Generate(Crumbly $crumbly, CrumblyPath $path): string {
-        $nodes = $path->GetBreadcrumbList();
+    public function Generate(Crumbly $crumbly): string {
+        $nodes =  $crumbly->GetPath()->GetBreadcrumbList();
 
         if (empty($nodes)) {
             return '';

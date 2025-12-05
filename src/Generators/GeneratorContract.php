@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Crumbly\Generators;
 
@@ -11,5 +12,5 @@ use Crumbly\Path\CrumblyPath;
  * @since 0.2.0
  */
 interface GeneratorContract {
-    public function Generate(Crumbly $crumbly, CrumblyPath $path): string;
+    public function Generate(Crumbly $crumbly): string;
 }

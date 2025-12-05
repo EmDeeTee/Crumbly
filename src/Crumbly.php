@@ -1,25 +1,7 @@
 <?php
+declare(strict_types=1);
 
 namespace Crumbly;
-
-// TODO: Add an ability to define a default home node for the path
-// TODO: Integrate a helper function. SOmething like:
-//function CrumblyMakeCrumbs(array $nodes, bool $embedMeta): string {
-//    $pb = new CrumblyPathBuilder();
-//
-//    $pb->AddRawNode(
-//        'Home',
-//        get_permalink(get_the_ID()),
-//    );
-//
-//    foreach ($nodes as $node) {
-//        $pb->AddRawNode($node['title'], $node['url']);
-//    }
-//
-//    $c = new Crumbly($pb->Build());
-//    $c->EmbedMeta();
-//    return $c->GenerateMarkup();
-//}
 
 use Crumbly\Path\CrumblyPath;
 
@@ -69,7 +51,4 @@ class Crumbly {
     public function GetOptions(): CrumblyOptions {
         return $this->options;
     }
-
-    //TODO: Split these two methods into separate classes
-    //TODO: Make EmbedMeta just return the JSON-LD with the breadcrumbs
 }

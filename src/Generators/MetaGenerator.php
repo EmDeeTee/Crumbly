@@ -7,7 +7,7 @@ use Crumbly\Crumbly;
 use Crumbly\Path\CrumblyPath;
 
 class MetaGenerator implements GeneratorContract {
-    public function Generate(Crumbly $crumbly, CrumblyPath $path): string {
+    public function Generate(Crumbly $crumbly): string {
         $breadcrumbItems = array_map(function($entry) {
             return [
                 "@type" => "ListItem",
@@ -15,9 +15,9 @@ class MetaGenerator implements GeneratorContract {
                 "name" => $entry['title'],
                 "item" => $entry['url'],
             ];
-        }, $path->GetBreadcrumbList());
+        }, $crumbly->GetPath()->GetBreadcrumbList());
 
-        $json = wp_json_encode([
+        return wp_json_encode([
             "@context" => "https://schema.org",
             "@type" => "BreadcrumbList",
             "itemListElement" => $breadcrumbItems,

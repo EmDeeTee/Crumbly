@@ -1,16 +1,20 @@
 <?php
+declare(strict_types=1);
 
 namespace Crumbly\Path;
 
+use JetBrains\PhpStorm\Deprecated;
+
+// NOTE: Should this be static?
 /**
  * @since 0.1.0
  */
+#[Deprecated]
 class CrumblyPathBuilder {
     /**
      * @var CrumblyPathNode[]
      */
     private array $path = [];
-
     private bool $ensureTrailingSlash = false;
 
     /**
@@ -24,16 +28,6 @@ class CrumblyPathBuilder {
     }
 
     /**
-     * Adds a node to the path with a title and URL. (Internal constructor call)
-     *
-     * @since 0.1.0
-     */
-    public function AddRawNode(string $title, string $path): self {
-        $this->path[] = new CrumblyPathNode($title, $path);
-        return $this;
-    }
-
-    /**
      * If the node URL doesn't contain a trailing slash, adds it
      *
      * If the URL already has a slash, does nothing
@@ -42,8 +36,9 @@ class CrumblyPathBuilder {
      *
      * @since 0.2.0
      */
-    public function UseEnsureTrailingSlash(bool $val) {
+    public function UseEnsureTrailingSlash(bool $val): self {
         $this->ensureTrailingSlash = $val;
+        return $this;
     }
 
     /**
@@ -58,7 +53,7 @@ class CrumblyPathBuilder {
         foreach ($this->path as $node) {
             $url = $node->GetUrl();
 
-            if ($this->ensureTrailingSlash && substr($url, -1) !== '/') {
+            if ($this->ensureTrailingSlash && !str_ends_with($url, '/')) {
                 $finalNodes[] = new CrumblyPathNode($node->GetTitle(), $url . '/');
             } else {
                 $finalNodes[] = $node;

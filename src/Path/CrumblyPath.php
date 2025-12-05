@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Crumbly\Path;
 
@@ -51,5 +52,9 @@ class CrumblyPath {
                 'index' => $index
             ];
         }, $nodes, array_keys($nodes));
+    }
+
+    public function AddNode(CrumblyPathNode $node): void {
+        $this->path[] = $node;
     }
 }
